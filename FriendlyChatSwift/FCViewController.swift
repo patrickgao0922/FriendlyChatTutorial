@@ -49,15 +49,25 @@ class FCViewController: UIViewController, UITableViewDataSource, UITableViewDele
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.clientTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
-
-    configureDatabase()
-    configureStorage()
-    configureRemoteConfig()
-    fetchConfig()
+    ref = FIRDatabase.database().reference()
     loadAd()
-    logViewLoaded()
+    self.clientTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
+    fetchConfig()
+    configureStorage()
   }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.messages.removeAll()
+        
+        _refHandle = self.ref.child("messages").observeEventType(.ChildAdded, withBlock: { (snapshot) in
+            self.messages.append(snapshot)
+            self.clientTable.insertRowsAtIndexPaths([NSIndexPath(forItem: self.messages.count-1, inSection:0)], withRowAnimation: .Automatic)
+        })
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        self.ref.removeObserverWithHandle(_refHandle)
+    }
 
   deinit {
   }
@@ -107,6 +117,16 @@ class FCViewController: UIViewController, UITableViewDataSource, UITableViewDele
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     // Dequeue cell
     let cell: UITableViewCell! = self.clientTable.dequeueReusableCellWithIdentifier("tableViewCell", forIndexPath: indexPath)
+    
+    let messageSnapshot: FIRDataSnapshot! = self.messages[indexPath.row]
+    let message = messageSnapshot.value as! Dictionary<String,String>
+    let name = message[Constants.MessageFields.name] as String!
+    let text = message[Constants.MessageFields.text] as String!
+    cell!.textLabel?.text=name + ": " + text
+    cell!.imageView?.image = UIImage(named: "ic_account_circle")
+    if let photoUrl = message[Constants.MessageFields.photoUrl], url = NSURL(string: photoUrl), data = NSData(contentsOfURL: url) {
+        cell!.imageView?.image = UIImage(data: data)
+    }
 
     return cell!
   }
@@ -124,6 +144,7 @@ class FCViewController: UIViewController, UITableViewDataSource, UITableViewDele
     if let photoUrl = AppState.sharedInstance.photoUrl {
       mdata[Constants.MessageFields.photoUrl] = photoUrl.absoluteString
     }
+    self.ref.child("messages").childByAutoId().setValue(mdata)
   }
 
   // MARK: - Image Picker

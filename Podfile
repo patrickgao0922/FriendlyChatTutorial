@@ -12,4 +12,5 @@ pod 'Firebase/RemoteConfig'
 
 target 'FriendlyChatSwift' do
     pod 'FirebaseAuth'
+    pod 'Firebase/Database'
 end

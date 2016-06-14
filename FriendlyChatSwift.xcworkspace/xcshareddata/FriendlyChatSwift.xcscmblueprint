@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "AA22867CC3A767B24ABEF6F6B32015B2F6CB8155",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "AA22867CC3A767B24ABEF6F6B32015B2F6CB8155" : 0,
+    "EDE978B054832EB498028C3CC646998BE3FB2B78" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "29A9C306-93D8-4559-8C40-5B29120FF621",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "AA22867CC3A767B24ABEF6F6B32015B2F6CB8155" : "swift-starter\/",
+    "EDE978B054832EB498028C3CC646998BE3FB2B78" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "FriendlyChatSwift",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "FriendlyChatSwift.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/patrickgao0922\/FriendlyChatTutorial.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AA22867CC3A767B24ABEF6F6B32015B2F6CB8155"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/firebase\/friendlychat",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EDE978B054832EB498028C3CC646998BE3FB2B78"
+    }
+  ]
+}
